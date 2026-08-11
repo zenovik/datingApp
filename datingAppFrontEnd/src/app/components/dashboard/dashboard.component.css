@@ -407,12 +407,54 @@
   opacity: 0.4;
 }
 
-/* ---- Panel headers (You may like / Your Matches) - brand red, not warning yellow ---- */
+/* ---- Panel headers (You may like / Your Matches) - an icon chip carries
+   the accent color instead of a full solid banner fill, which read more
+   like a heavy warning strip than a section header. */
 .panel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: transparent;
+  color: var(--bs-body-color);
+  border: none;
+  border-bottom: 1px solid var(--bs-border-color);
+  border-radius: 1rem 1rem 0 0 !important;
+  padding: 0.9rem 1.1rem;
+}
+
+.panel-header h6 {
+  font-weight: 700;
+  font-size: 0.95rem;
+  flex: 1 1 auto;
+}
+
+.panel-header-count {
+  flex-shrink: 0;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb), 0.12);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-header-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   color: #fff;
-  border: none;
-  border-radius: 1rem 1rem 0 0 !important;
+  font-size: 0.95rem;
+  box-shadow: 0 3px 8px rgba(var(--accent-rgb), 0.3);
 }
 
 .info-card {

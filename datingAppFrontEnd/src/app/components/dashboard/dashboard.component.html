@@ -198,7 +198,9 @@
     <div class="col-12 col-sm-6 col-md-4">
       <div class="card info-card shadow-sm border-0 rounded-4 h-100">
         <div class="card-header panel-header">
-          <h6 class="mb-0"><i class="bi bi-stars me-1"></i> You may like</h6>
+          <span class="panel-header-icon"><i class="bi bi-stars"></i></span>
+          <h6 class="mb-0">You may like</h6>
+          <span class="panel-header-count" *ngIf="discoveryResults().length > 0">{{ discoveryResults().length }}</span>
         </div>
         <ul class="match-list">
           <li class="match-row" *ngFor="let p of discoveryResults().slice(0, 5); let i = index" [style.animation-delay.ms]="i * 60">
@@ -236,7 +238,9 @@
     <div class="col-12 col-sm-6 col-md-4">
       <div class="card info-card shadow-sm border-0 rounded-4 h-100">
         <div class="card-header panel-header">
-          <h6 class="mb-0"><i class="bi bi-heart-fill me-1"></i> Your Matches</h6>
+          <span class="panel-header-icon"><i class="bi bi-heart-fill"></i></span>
+          <h6 class="mb-0">Your Matches</h6>
+          <span class="panel-header-count" *ngIf="matches().length > 0">{{ matches().length }}</span>
         </div>
         <ul class="match-list">
           <li class="match-row" *ngFor="let m of matches(); let i = index" [style.animation-delay.ms]="i * 60">
