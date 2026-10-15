@@ -72,7 +72,7 @@ services:
     runtime: static
     rootDir: datingAppFrontEnd
     buildCommand: npm ci && npm run build
-    staticPublishPath: ./dist/dating-app-front/browser
+    staticPublishPath: ./dist/lovefox-front/browser
     routes:
       - type: rewrite
         source: /*

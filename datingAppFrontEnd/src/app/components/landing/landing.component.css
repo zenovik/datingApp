@@ -10,6 +10,50 @@ h1 span .text-danger {
   color: var(--accent) !important;
 }
 
+/* ---- "Talk Before You Meet" section (was the hero's dead accent panel) ---- */
+.video-trust-section {
+  background: linear-gradient(160deg, rgba(var(--accent-rgb), 0.08), var(--surface-alt));
+  border-radius: 1.5rem;
+  padding: 3rem;
+}
+
+.video-trust-img {
+  max-height: 420px;
+  border-radius: 1.25rem;
+  /* dating.png's canvas used to be solid opaque white behind the two photo
+     cards - mix-blend-mode: multiply was tried first, but this section's
+     backdrop (rgba(accent,0.08) -> --surface-alt, both near-white) is too
+     close to white itself for a multiply blend to visibly change anything.
+     The file itself has since been reprocessed (ffmpeg colorkey on the
+     exact white) to make that canvas actually transparent, so it sits
+     directly on the gradient below instead of looking like a white card. */
+}
+
+.video-trust-stat {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.video-trust-stat i {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 767.98px) {
+  .video-trust-section {
+    padding: 2rem 1.25rem;
+  }
+}
+
 .slide {
   background-image: url(../../../assets/images/landingBanner.png);
   background-size: contain;
@@ -18,9 +62,22 @@ h1 span .text-danger {
   background-position: right;
 }
 
-.imgBack {
-  height: 750px !important;
-  margin-top: -100px !important;
+/* Poppins renders noticeably wider than the previous system font at the
+   same size, so the description paragraph was running long enough to pass
+   under the hero photo (landingBanner.png is a right-aligned image, not a
+   column-bound element, so text and photo can overlap once a line gets
+   this long). Capping the paragraph's width keeps every line clear of it. */
+.paragraph > span {
+  display: block;
+  max-width: 480px;
+}
+
+.landing-card {
+  background: var(--surface-card) !important;
+}
+
+.landing-avatar-badge {
+  background: var(--surface-alt) !important;
 }
 
 .loveCircle {
@@ -32,7 +89,23 @@ h1 span .text-danger {
 }
 
 .instant {
-  text-shadow: 2px 9px 20px var(--accent);
+  text-shadow: 0 4px 14px rgba(var(--accent-rgb), 0.4);
+}
+
+/* These two stat blocks used to be forced to half-width twice over (a
+   col-sm-6 wrapper around two more col-6 children, with no .row ancestor to
+   make that gutter math correct) - "1-Tap" didn't have room to stay on one
+   line at the page's 3.5rem heading size and wrapped to "1-" / "Tap". Sized
+   down and given breathing room instead of inheriting the page h1 size. */
+.experience,
+.user {
+  flex: 0 0 auto;
+}
+
+.experience h1,
+.user h1 {
+  font-size: 2.25rem;
+  white-space: nowrap;
 }
 
 #lineCurve {
@@ -161,15 +234,19 @@ font-weight: bolder;
 
 .highlights-section,
 .dynamic-section {
-  background-color: rgba(211, 201, 201, 0.3);
+  background-color: var(--surface-alt);
 }
 
-/* ---- Highlight cards (Smart Matching / Video Calls / Real-time Chat) ---- */
+/* ---- Highlight cards (Smart Matching / Video Calls / Real-time Chat) ----
+   Entrance (fade + rise into view) comes from the shared [appReveal]
+   directive/`.reveal` rules in styles.css, staggered per-card via
+   [appReveal]="i" - this file only adds the box-shadow transition and the
+   hover lift, with its own quicker transition so hover feels snappy even
+   though the entrance transition is intentionally slower. */
 .highlight-card {
   background: #fff;
   color: #212529;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 0.4s ease both;
+  transition: box-shadow 0.3s ease;
 }
 
 .highlight-card h5 {
@@ -183,6 +260,7 @@ font-weight: bolder;
 .highlight-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 16px 28px rgba(var(--accent-rgb), 0.18) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .highlight-icon {
@@ -193,27 +271,20 @@ font-weight: bolder;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
   color: #fff;
   font-size: 1.6rem;
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+/* Entrance animation/reduced-motion handling now lives in the shared
+   [appReveal] directive + `.reveal` rules (styles.css) - it already no-ops
+   under prefers-reduced-motion and when IntersectionObserver is
+   unavailable, so nothing card-specific is needed here any more. */
 
-@media (prefers-reduced-motion: reduce) {
-  .highlight-card {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* This is Bootstrap's `md` breakpoint - the same one `imgBack`'s
-   `d-md-block` uses. Below it the columns stack to one, so the photo would
-   render directly behind the hero text instead of beside it; at or above it
-   the two-column layout is still intact and the photo belongs in view. */
+/* This is Bootstrap's `md` breakpoint. Below it the columns stack to one,
+   so the photo would render directly behind the hero text instead of
+   beside it; at or above it the two-column layout is still intact and the
+   photo belongs in view. */
 @media (max-width: 767.98px) {
   .slide {
     height: auto;

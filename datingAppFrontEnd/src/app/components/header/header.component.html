@@ -3,7 +3,7 @@
     <i class="bi" [class.bi-list]="!isOpen()" [class.bi-x-lg]="isOpen()"></i>
   </button>
   <a class="topbar-brand" [routerLink]="isAuthenticated() ? '/dashboard' : '/'">
-    <i class="bi bi-heart-fill"></i> Dating
+    <i class="bi bi-heart-fill"></i> LoveFox
   </a>
 </div>
 
@@ -11,7 +11,7 @@
 
 <aside class="sidebar" [class.open]="isOpen()">
   <a class="sidebar-brand" [routerLink]="isAuthenticated() ? '/dashboard' : '/'">
-    <i class="bi bi-heart-fill"></i> Dating
+    <i class="bi bi-heart-fill"></i> LoveFox
   </a>
 
   <nav class="sidebar-nav">

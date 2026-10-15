@@ -24,7 +24,7 @@
 
 /* ---- Free tier teaser ---- */
 .likes-teaser-card {
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
   color: #fff;
   border-radius: 1.5rem;
   box-shadow: 0 16px 32px rgba(var(--accent-rgb), 0.25);
@@ -79,7 +79,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
   color: #fff;
   font-size: 0.68rem;
   font-weight: 600;
@@ -147,7 +147,7 @@
 }
 
 .like-btn-like {
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
   color: #fff;
 }
 

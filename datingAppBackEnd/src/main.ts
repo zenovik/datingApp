@@ -41,8 +41,8 @@ async function bootstrap() {
   );
 
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('DatingApp API')
-    .setDescription('REST API for the DatingApp platform')
+    .setTitle('LoveFox API')
+    .setDescription('REST API for the LoveFox platform')
     .setVersion('0.1')
     .addBearerAuth()
     .build();

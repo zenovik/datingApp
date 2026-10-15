@@ -125,7 +125,7 @@
 }
 
 .icon-btn:hover {
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
   color: #fff;
   border-color: transparent;
   transform: translateY(-1px);
@@ -200,7 +200,7 @@
   padding: 8px 16px;
   border: none;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
   color: #fff;
   font-size: 0.85rem;
   font-weight: 600;
@@ -257,7 +257,7 @@
 }
 
 .message.to {
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
   color: #fff;
   margin-left: auto;
   text-align: right;
@@ -341,7 +341,7 @@ input.is-composing {
 }
 
 .send-btn.armed {
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
   color: #fff;
   box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.35);
 }

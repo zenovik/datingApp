@@ -14,7 +14,7 @@
 }
 
 .about-stats {
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
   animation: fadeIn 0.5s ease both;
 }
 
@@ -46,13 +46,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
   color: #fff;
   font-size: 1.6rem;
 }
 
 .about-cta {
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
   animation: fadeIn 0.5s ease both;
 }
 

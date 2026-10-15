@@ -29,7 +29,7 @@ const ROUTES_WITHOUT_SHELL = ['/admin'];
   imports: [HeaderComponent, RouterOutlet, FooterComponent, CallOverlayComponent, NgIf],
 })
 export class AppComponent {
-  title = 'datingAppFront';
+  title = 'loveFoxFront';
 
   private readonly authService = inject(AuthService);
   private readonly chatService = inject(ChatService);
@@ -94,7 +94,7 @@ export class AppComponent {
     // never forces a reload on its own.
     if (this.swUpdate.isEnabled) {
       this.swUpdate.versionUpdates.subscribe((event) => {
-        if (event.type === 'VERSION_READY' && confirm('A new version of DatingApp is available. Reload now?')) {
+        if (event.type === 'VERSION_READY' && confirm('A new version of LoveFox is available. Reload now?')) {
           document.location.reload();
         }
       });

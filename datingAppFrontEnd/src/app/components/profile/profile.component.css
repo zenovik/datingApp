@@ -290,7 +290,7 @@ margin-top: 1.5% !important;
 }
 
 .interest-check-group .form-check-input:checked + .form-check-label {
-    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    background: linear-gradient(135deg, var(--accent), var(--accent-warm));
     border-color: transparent;
     color: #fff;
     box-shadow: 0 4px 10px rgba(var(--accent-rgb), 0.3);
@@ -306,7 +306,7 @@ margin-top: 1.5% !important;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    background: linear-gradient(135deg, var(--accent), var(--accent-warm));
     border: none;
     color: #fff;
     font-weight: 700;
@@ -381,7 +381,7 @@ margin-top: 1.5% !important;
     display: flex;
     align-items: center;
     gap: 4px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    background: linear-gradient(135deg, var(--accent), var(--accent-warm));
     color: #fff;
     font-size: 0.65rem;
     font-weight: 700;
@@ -446,7 +446,7 @@ margin-top: 1.5% !important;
 }
 
 .photo-primary-btn {
-    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    background: linear-gradient(135deg, var(--accent), var(--accent-warm));
     color: #fff;
 }
 
@@ -580,7 +580,7 @@ margin-top: 1.5% !important;
 }
 
 .settings-toggle.on {
-    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    background: linear-gradient(135deg, var(--accent), var(--accent-warm));
 }
 
 .settings-toggle-knob {

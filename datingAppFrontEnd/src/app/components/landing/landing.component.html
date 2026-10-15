@@ -1,14 +1,19 @@
 <div class="container slide">
 
-  <div class="row d-flex justify-content-center">
+  <!-- justify-content-center dropped: it used to center a col-lg-8 +
+       col-lg-3 pair that nearly filled the row (11/12 columns), which
+       barely moved them. With the col-lg-3 accent panel gone (moved into
+       its own section below), centering a *lone* col-lg-8 shifts it ~200px
+       right of where the text should sit, straight into the hero photo. -->
+  <div class="row d-flex">
 
-    <div class="col-lg-8 col-sm-12 col-md-8 mt-5 p-5 paragraph">
+    <div class="col-lg-8 col-sm-12 col-md-8 mt-5 p-5 paragraph" appReveal>
       <span class="text-danger">Because you Deserve <span id="lineCurve">Better!</span></span>
-      <h1 class="mb-5 "> <span class="heart textdanger"><b>D</b></span>ating in your
+      <h1 class="mb-5"><span class="heart textdanger"><b>L</b></span>ove<span class="textdanger">Fox</span> in your
         <br />
         <span class="text-danger" style="font-weight: 800;"> Favorite </span> <span class="instant">Instant</span>
         <br />
-        <span class="text-danger" style="font-weight: 800; "> Messengers!</span>
+        <span class="text-danger" style="font-weight: 800;"> Messengers!</span>
       </h1>
 
       <span class="mt-3" style="font-size: 1.5rem;">
@@ -27,10 +32,36 @@
       </div>
     </div>
 
+  </div>
+</div>
 
+<!-- Was a decorative empty panel sitting in the hero (col-lg-3,
+     z-index:-999) - turned into a real content section instead: same soft
+     gradient look, now with an actual image and copy, image-left/text-right
+     (mirrored from the hero's photo-on-right to break up the rhythm before
+     "Meet The Chosen One" repeats that same side). -->
+<div class="container mt-5 mb-5 video-trust-section" appReveal>
+  <div class="row d-flex align-items-center flex-row-reverse">
+    <div class="col-12 col-md-6 mb-4 mb-md-0 text-center">
+      <img src="../../../assets/images/dating.png" alt="Two LoveFox members on a video call before meeting up"
+        class="img-fluid video-trust-img">
+    </div>
 
-    <div class="col-lg-3 col-md-3 d-none d-md-block bg-warning imgBack" style="z-index: -999 !important;">
+    <div class="col-12 col-md-6">
+      <h1><b>Talk <span class="textdanger">Before</span> You Meet</b></h1>
+      <span>
+        Every match starts with a face-to-face video call, right inside the app - no more guessing who's
+        actually on the other end. See their smile, hear their voice, and know it's real before you ever
+        agree on a place and time.
+      </span>
 
+      <div class="video-trust-stat mt-4">
+        <i class="bi bi-camera-video-fill"></i>
+        <div>
+          <b>1,000s of calls happen every day</b>
+          <span class="text-muted d-block">Free, unlimited, and built in - not a paid add-on.</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -42,7 +73,7 @@
   <div class="container">
     <div class="row d-flex justify-content-center mt-5 mb-5 g-4">
       <div class="col-12 col-sm-6 col-lg-4" *ngFor="let highlight of highlights; let i = index">
-        <div class="highlight-card h-100 p-4 rounded-4 shadow border-0 text-center" [style.animation-delay.ms]="i * 80">
+        <div class="highlight-card h-100 p-4 rounded-4 shadow border-0 text-center" [appReveal]="i">
           <div class="highlight-icon mb-3">
             <i class="bi" [class]="highlight.icon"></i>
           </div>
@@ -61,11 +92,11 @@
 <!-- Start Section Three -->
 <div class="container mt-5 mb-5">
   <div class="row d-flex">
-    <div class="col-12 col-md-6 thirdSectionImage mb-4 mb-md-0">
+    <div class="col-12 col-md-6 thirdSectionImage mb-4 mb-md-0" appReveal>
       <!-- <img src="../../../assets/images/thirdSection.png" alt="" srcset="" style="height: 80%; width: 80%;"> -->
     </div>
 
-    <div class="col-12 col-md-6 ">
+    <div class="col-12 col-md-6 " [appReveal]="1">
       <h1><b><span class="textdanger">Meet</span> The <br>
           Chosen One</b>
       </h1>
@@ -101,20 +132,20 @@
 <div class="container-fluid pt-2 dynamic-section">
   <div class="container">
     <div class="row m-0 m-md-5 mt-4">
-      <div class="col-12 col-lg-7 ">
+      <div class="col-12 col-lg-7 " appReveal>
         <div class="content">
           <h1><b>Built For Real <br> <span class="textdanger">Conversations</span></b></h1>
           <span class="mt-1 mb-4">No endless swiping into the void. Real-time chat, HD video calls, and a matching<br>
             engine that pays attention - everything you need to actually meet someone, in one app.</span>
         </div>
 
-        <div class="col-12 col-sm-6 counting mt-4 d-flex">
-          <div class="experience col-6">
+        <div class="counting mt-4 d-flex">
+          <div class="experience">
             <h1><b>100%</b></h1>
             <span class="text-muted">Verified<br> Focus</span>
           </div>
 
-          <div class="user col-6 ">
+          <div class="user">
             <h1><b>1-Tap</b></h1>
             <span class="text-muted">Block & Report</span>
           </div>
@@ -131,7 +162,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-lg-5 mt-4 mt-lg-0 text-center">
+      <div class="col-12 col-lg-5 mt-4 mt-lg-0 text-center" [appReveal]="1">
         <img src="../../../assets/images/FourthSection2.png" alt="" class="img-fluid fourthSectionImg">
       </div>
     </div>
@@ -145,15 +176,15 @@
 <div class="container mt-4 mb-4 pt-3 p-2 ">
   <div class="row justify-content-center">
 
-    <div class="col-12 col-md-6 mt-5 ">
-      <div class="cardCarousel shadow bg-warning ">
+    <div class="col-12 col-md-6 mt-5 " appReveal>
+      <div class="cardCarousel shadow landing-card">
         <div class="cardContent mt-2 mb-2">
           <span class="text-muted">
             "I matched with someone I never would have run into otherwise. We video-called before meeting up, so it
             didn't feel like a gamble - just felt right from the first hello."</span>
         </div>
         <div class="imgCarousel m-3 pb-1 mb-2 d-flex">
-          <div class=" callIcon text-center bg-info " style="border-radius: 50%; height: 60px; width: 60px;">
+          <div class=" callIcon text-center landing-avatar-badge" style="border-radius: 50%; height: 60px; width: 60px;">
             <img class="mt-2 mb-0 p-2" src="../../../assets/images/LoginPoster2.png" height="60" width="60" />
           </div>
           <div class=" mt-3 m-2 ">
@@ -170,15 +201,15 @@
             <span class="textdanger">Members </span>Say</b></h1>
       </div>
 
-      <div class="col-12 mt-5 ">
-        <div class="cardCarousel shadow bg-warning ">
+      <div class="col-12 mt-5 " [appReveal]="1">
+        <div class="cardCarousel shadow landing-card">
           <div class="cardContent mt-2 mb-2 m-2">
             <span class="text-muted">
               "The blur-until-matched photo setting sold me. I could actually take my time deciding who to talk to
               without worrying who was seeing my profile first."</span>
           </div>
           <div class="imgCarousel m-3 pb-1 mb-2 d-flex">
-            <div class=" callIcon text-center bg-info " style="border-radius: 50%; height: 60px; width: 60px;">
+            <div class=" callIcon text-center landing-avatar-badge" style="border-radius: 50%; height: 60px; width: 60px;">
               <img class="mt-2 mb-0 p-2" src="../../../assets/images/LoginPoster2.png" height="60" width="60" />
             </div>
             <div class=" mt-3 m-2 ">

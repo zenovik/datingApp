@@ -9,18 +9,87 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 
 /* Overridden at runtime by AccentThemeService via inline custom properties
-   on :root - these are just the fallback/first-paint values (red, matching
-   the app's original hardcoded color) before that service applies the
-   user's saved choice. */
+   on :root - these are just the fallback/first-paint values (LoveFox's
+   brand red, the default theme color - see AccentThemeService's PALETTES,
+   'red' stays first/default) before that service applies the user's saved
+   choice. Rest of the system (gradients shifting to coral/orange, Poppins,
+   rounded pill buttons, tinted surfaces) is modeled on heartlink.co.in's
+   shipped CSS. */
 :root {
-  --accent: #ff0000;
-  --accent-strong: #b30000;
-  --accent-rgb: 255, 0, 0;
+  --accent: #e11d2e;
+  --accent-strong: #a1121f;
+  --accent-rgb: 225, 29, 46;
+  /* Second stop for decorative brand gradients (hero icons, primary CTAs) -
+     kept separate from --accent-strong so hover states/alert text stay a
+     readable pink rather than shifting to orange. */
+  --accent-warm: #ff8a5b;
+  --accent-warm-rgb: 255, 138, 91;
+
+  --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --surface: #fffbfc;
+  --surface-alt: #fdf2f8;
+  --surface-card: #ffffff;
+  --ink: #1f1a1c;
+  --ink-muted: #737373;
+  --border-soft: #fbcfe8;
 }
 
 html, body {
-  overflow-x: hidden;
+  /* `hidden` (not `clip`) used to be here - it prevents horizontal scroll
+     the same way, but in every browser it *also* silently breaks
+     `position: sticky` for every descendant on the page (setting overflow
+     on either axis forces the other to a scrolling value per spec, which
+     disrupts how the nearest-scrolling-ancestor gets resolved for sticky
+     descendants - this is a well-known, widely hit browser gotcha, not
+     specific to this app). `clip` prevents the same overflow without ever
+     turning html/body into a scroll container, so it doesn't have that
+     side effect - needed for the landing page's pinned scroll-scrub hero
+     (see .hero-scrub-stage in landing.component.css) to actually stick. */
+  overflow-x: clip;
   max-width: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--surface);
+  color: var(--ink);
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Bold, rounded, playful baseline for the generic Bootstrap building blocks
+   used across every page - cards, buttons, inputs, modals - so the whole
+   app reads as one design system instead of stock Bootstrap. The admin
+   console keeps its own square/professional shell (see
+   admin-layout.component.css) and is excluded below. */
+.card:not(.admin-shell .card),
+.modal-content:not(.admin-shell .modal-content) {
+  border: 1px solid var(--border-soft);
+  border-radius: 1.25rem;
+  background-color: var(--surface-card);
+}
+
+.btn:not(.admin-shell .btn) {
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.form-control:not(.admin-shell .form-control),
+.form-select:not(.admin-shell .form-select) {
+  border-radius: 0.6rem;
+  border-color: var(--border-soft);
+}
+
+.form-control:not(.admin-shell .form-control):focus,
+.form-select:not(.admin-shell .form-select):focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.2rem rgba(var(--accent-rgb), 0.15);
 }
 
 /* Locks page scroll while the mobile sidebar drawer is open (see
@@ -36,9 +105,22 @@ img {
   height: auto;
 }
 
+/* LoveFox's primary action color everywhere in the app is Bootstrap's
+   .btn-danger/.text-danger/etc (repurposed as "accent", not an actual
+   danger/error state - see AccentThemeService). Painted as the brand's
+   signature pink-to-coral gradient (matches heartlink.co.in's CTA
+   treatment) rather than a flat fill. */
 .btn-danger{
     background-color: var(--accent) !important;
+    background-image: linear-gradient(135deg, var(--accent), var(--accent-warm)) !important;
+    border-color: transparent !important;
     color : white;
+    box-shadow: 0 8px 16px rgba(var(--accent-rgb), 0.3);
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active {
+  background-image: linear-gradient(135deg, var(--accent-strong), var(--accent-warm)) !important;
+  box-shadow: 0 10px 20px rgba(var(--accent-rgb), 0.4);
 }
 
 .btn-danger, .btn-outline-danger {
@@ -86,7 +168,7 @@ img {
 }
 
 button {
-    box-shadow: 10px 10px 15px rgba(var(--accent-rgb), 0.42);
+    box-shadow: 0 8px 20px rgba(var(--accent-rgb), 0.22);
   }
 
   /* The admin console is a standalone professional shell with its own fixed
@@ -117,3 +199,48 @@ button {
   .textsuccess{
     color:green;
   }
+
+/* ---------------------------------------------------------------------
+   Motion - scroll reveals + shared hover/press feel, applied via
+   [appReveal] (see reveal-on-scroll.directive.ts) plus a few global hover
+   rules. Kept subtle: a short rise-and-fade and small, physical-feeling
+   hover/press moves rather than anything showy - this is a product, not a
+   portfolio piece, so motion should read as "polished," not "look at me."
+   Every rule here is skipped for prefers-reduced-motion. --------------- */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  .btn:not(.admin-shell .btn) {
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-image 0.18s ease;
+  }
+
+  .btn:not(.admin-shell .btn):hover {
+    transform: translateY(-2px);
+  }
+
+  .btn:not(.admin-shell .btn):active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .card:not(.admin-shell .card) {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  a {
+    transition: color 0.15s ease;
+  }
+}

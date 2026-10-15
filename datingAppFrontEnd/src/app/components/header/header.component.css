@@ -138,7 +138,7 @@
 }
 
 .sidebar-link.active {
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
   color: #fff;
   box-shadow: 0 6px 16px rgba(var(--accent-rgb), 0.35);
 }

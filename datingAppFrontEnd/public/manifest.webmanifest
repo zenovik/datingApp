@@ -1,11 +1,11 @@
 {
-  "name": "DatingApp",
-  "short_name": "DatingApp",
+  "name": "LoveFox",
+  "short_name": "LoveFox",
   "description": "Meet, match, and chat.",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
-  "theme_color": "#ff0000",
+  "theme_color": "#e11d2e",
   "background_color": "#ffffff",
   "icons": [
     {

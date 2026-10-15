@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { RevealOnScrollDirective } from '../../core/motion/reveal-on-scroll.directive';
 
 interface Highlight {
   icon: string;
@@ -30,7 +31,7 @@ const HIGHLIGHTS: Highlight[] = [
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css'],
-  imports: [RouterLink, NgFor],
+  imports: [RouterLink, NgFor, RevealOnScrollDirective],
 })
 export class LandingComponent {
   readonly highlights = HIGHLIGHTS;

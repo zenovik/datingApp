@@ -33,11 +33,19 @@ interface AuthedSocket extends Socket {
 
 @WebSocketGateway({
   namespace: '/chat',
-  // See the matching comment in main.ts - reflects localhost or any LAN IP on
-  // port 4200 so chat/calls also work when the frontend is opened from a
-  // phone on the same network.
+  // Mirrors main.ts's HTTP CORS setup. This was previously hardcoded to the
+  // dev-only regex below in every environment - engine.io validates Origin
+  // server-side on the initial handshake regardless of transport, so in
+  // production (any real deployed frontend origin, e.g. on Hostinger) every
+  // socket connection was being rejected before the app-level code ever ran,
+  // silently breaking chat and call signaling. In dev, reflects localhost or
+  // any LAN IP on port 4200 so chat/calls also work when the frontend is
+  // opened from a phone on the same network.
   cors: {
-    origin: /^http:\/\/(localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):4200$/,
+    origin:
+      process.env.NODE_ENV === 'production'
+        ? process.env.FRONTEND_URL
+        : /^http:\/\/(localhost|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):4200$/,
     credentials: true,
   },
 })

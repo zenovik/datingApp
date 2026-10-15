@@ -26,7 +26,7 @@ interface AccessTokenPayload {
 }
 
 const TWO_FACTOR_CHALLENGE_TTL = '5m';
-const TWO_FACTOR_ISSUER = 'DatingApp';
+const TWO_FACTOR_ISSUER = 'LoveFox';
 
 interface TwoFactorChallengePayload {
   sub: string;

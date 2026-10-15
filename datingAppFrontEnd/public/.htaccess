@@ -1,0 +1,37 @@
+# Deployed to Hostinger's public_html (Apache/LiteSpeed), this file ships
+# automatically inside dist/lovefox-front/browser because angular.json's
+# "assets" glob includes everything under public/.
+#
+# Angular is a single-page app - every "real" route (/dashboard, /profile,
+# etc.) is client-side only, so the server must serve index.html for any
+# request that isn't an actual file on disk, and let Angular's router take
+# it from there. Without this, refreshing on any route but "/" gives a 404.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Let real files/folders (js, css, images, the service worker, etc.) through untouched.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else falls back to index.html.
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# index.html itself must never be cached - it references hashed bundle
+# filenames, and a stale cached index.html would keep pointing at bundles
+# that no longer exist after the next deploy.
+<IfModule mod_headers.c>
+  <FilesMatch "^index\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(js|css|svg|png|jpg|jpeg|gif|webp|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>

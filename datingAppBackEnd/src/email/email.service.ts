@@ -43,7 +43,7 @@ export class EmailService implements OnModuleInit {
       await this.transporter.sendMail({
         from:
           this.configService.get<string>('SMTP_FROM') ??
-          'no-reply@datingapp.example',
+          'no-reply@lovefox.example',
         to,
         subject,
         html,
@@ -58,16 +58,16 @@ export class EmailService implements OnModuleInit {
   async sendWelcomeEmail(to: string, firstName: string): Promise<void> {
     await this.send(
       to,
-      'Welcome to DatingApp!',
+      'Welcome to LoveFox!',
       `<p>Hi ${escapeHtml(firstName)},</p>
-       <p>Welcome to DatingApp! Complete your profile and start swiping to find your match.</p>`,
+       <p>Welcome to LoveFox! Complete your profile and start swiping to find your match.</p>`,
     );
   }
 
   async sendPasswordResetEmail(to: string, resetUrl: string): Promise<void> {
     await this.send(
       to,
-      'Reset your DatingApp password',
+      'Reset your LoveFox password',
       `<p>We received a request to reset your password.</p>
        <p><a href="${escapeHtml(resetUrl)}">Click here to reset your password</a>. This link expires in 1 hour.</p>
        <p>If you didn't request this, you can safely ignore this email.</p>`,

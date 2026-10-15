@@ -18,7 +18,7 @@ export class ContactService {
   async submit(dto: CreateContactMessageDto): Promise<void> {
     const supportEmail =
       this.configService.get<string>('SUPPORT_EMAIL') ??
-      'support@datingapp.example';
+      'support@lovefox.example';
 
     await this.emailService.send(
       supportEmail,
